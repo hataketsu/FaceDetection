@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Face recognizer</string>
+    <string name="BLANK" />
+    <string name="training">Training</string>
+    <string name="recognize">Recognize</string>
+    <string name="capture">Capture</string>
+    <string name="info">
+        This application uses OpenCV as core engine for face detection and face recognition.
+        \nAll rights reserved.
+    </string>
+    <string name="help">
+        First, click \"Users image\", then create a new user
+        \nNext, click the user, then add some images of this user
+        \nNext, click \"Recognize\" to recognize faces
+    </string>
+    <string name="warning">
+        Any time after adding or removing images, users, the data needs to be re-tranined.
+    </string>
+    <string name="setting_note">Increasing the settings will make the recognition more accurate but will cause lag and may cause the system to crash.
+        \nThe default settings should work on more android phones.</string>
+    <string name="eigen_note">Higher number of components will make the recognition better but will cause lag and may crash the system. Higher threshold will try to recognize everything and will not show unknown.</string>
+    <string name="fisher_note">The components is the amount kept after Linear Discriminant Analysis with the Fisherface criterion. Higher number of components will make the recognition better but will cause lag and may crash the system. Higher threshold will try to recognize everything and will not show unknown.</string>
+    <array name="algo">
+        <item>LBP face recogniser</item>
+        <item>Eigen face recogniser</item>
+        <item>Fisher face recogniser</item>
+
+    </array>
+</resources>
