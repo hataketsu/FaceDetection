@@ -172,7 +172,7 @@ public class UserListActivity extends AppCompatActivity {
             File folder = new File(ConstantsHelper.FACES_DIRECTORY);
             if (!folder.isDirectory()) {
                 Toast.makeText(activity, folder.mkdirs() ? "Created face folder" : "Can't create face folder", Toast.LENGTH_LONG).show();
-            }
+            } else 
 
             for (File file : folder.listFiles()) {
                 if (file.isDirectory()) {
