@@ -37,11 +37,7 @@ public class GetNewFaceActivity extends AppCompatActivity implements IPickResult
 
     private String name;
     private ImageView capturedImg;
-
-
-
     private ImageView croppedImg;
-
     MatOfRect faces = new MatOfRect();
     private View captureBtn;
     private Bitmap faceBM;

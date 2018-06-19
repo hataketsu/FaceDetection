@@ -1,0 +1,123 @@
+@startuml
+class MainActivity{
+ListView mListView
+- onClick(View view)
+- void askForPermission()
+}
+
+class LabelsHelper{
++void readLabels()
++void saveLabels(Map<String, Integer> labels)
+}
+
+class YesConfirmHelper{
++void confirm(Context context, String confirmText,final Runnable callback)
+}
+
+class ConstantsHelper{
+String DIRECTORY
+String FACES_DIRECTORY
+String XML_DIRECTORY
+String XML_FACE_DETECT_PATH
+String XML_FACE_RECOG_PATH
+String LABELS_PATH
+SharedPreferences preferences
+FaceRecognizer faceRecognizer
+CascadeClassifier faceDetector
+
++FaceRecognizer getFaceRecognizer(Context , boolean )
++CascadeClassifier getFaceDetector(Context )
+}
+
+class AppCompatActivity{
++ void onCreate(Bundle)
+}
+
+AboutActivity --^ AppCompatActivity :extends
+GetNewFaceActivity --^ AppCompatActivity:extends
+MainActivity --^ AppCompatActivity:extends
+UserListActivity --^ AppCompatActivity:extends
+RecognizerActivity --^ AppCompatActivity:extends
+SettingActivity --^ AppCompatActivity:extends
+UserImagesActivity --^ AppCompatActivity:extends
+RecognizerActivity --^ IPickResult:implements
+GetNewFaceActivity --^ IPickResult:implements
+
+MainActivity ..> RecognizerActivity :uses
+MainActivity ..> UserListActivity :uses
+MainActivity ..> AboutActivity :uses
+UserListActivity ..> UserImagesActivity :uses
+UserImagesActivity ..> GetNewFaceActivity :uses
+MainActivity ..> SettingActivity :uses
+UserListActivity .up.> YesConfirmHelper:uses
+UserImagesActivity .up.> YesConfirmHelper:uses
+RecognizerActivity ..> ConstantsHelper:uses
+RecognizerActivity ..> LabelsHelper:uses
+GetNewFaceActivity ..> ConstantsHelper:uses
+ImageAdapter --+ UserImagesActivity
+
+EmptyViewHolder --^ RecyclerView.ViewHolder :extends
+UserImagesActivity ..> EmptyViewHolder: uses
+UserListActivity ..> EmptyViewHolder: uses
+interface IPickResult{
+-void onPickResult(PickResult)
+}
+
+class AboutActivity{
+
+}
+
+class GetNewFaceActivity{
+- String name
+    - ImageView capturedImg
+    - ImageView croppedImg
+-    MatOfRect faces
+    - View captureBtn
+    - Bitmap faceBM
+    - void initViews()
+}
+
+class ImageAdapter{
+-ArrayList<File> images
+-UserImagesActivity activity
+-void reloadFolder()
+}
+
+class RecyclerView.Adapter{
+-RecyclerView.ViewHolder onCreateViewHolder()
+-void onBindViewHolder()
+-int getItemCount()
+}
+
+ImageAdapter --^ RecyclerView.Adapter :extends
+class UserImagesActivity{
+-RecyclerView imagesList
+-ImageAdapter adapter
+}
+
+class UserListActivity{
+-RecyclerView nameList
+-NameAdapter adapter
+-void askForNewName()
+
+}
+class SettingActivity{
+ +String LBP_THRESHOLD
+  +   String LBP_RADIUS
+   +  String LBP_GRID_X
+    + String LBP_GRID_Y
+     +String LBP_NEIGHBORS
+    + String EIGEN_THRESHOLD
+     +String EIGEN_COMPONENTS
+     +String FISHER_COMPONENTS
+     +String FISHER_THRESHOLD
+     void save()
+}
+class RecognizerActivity{
++Scalar GREEN_COLOR
+-ImageView imageIV
+-void initViews()
+-void startTraining()
+}
+
+@enduml

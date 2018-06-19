@@ -80,7 +80,6 @@ public class UserImagesActivity extends AppCompatActivity {
 
         ImageAdapter(UserImagesActivity activity) {
             this.activity = activity;
-
         }
 
         @NonNull
